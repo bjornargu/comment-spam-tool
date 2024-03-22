@@ -1,0 +1,3 @@
+Content-Type: application/json
+Authorization: Bearer abcdef123456789
+Cookie: remember_token=65fae0dfcfd04; PHPSESSID=a5sbt1dmj5n689c5ujgipuo6qn
