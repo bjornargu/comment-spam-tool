@@ -3,7 +3,7 @@ import sys
 
 def add_comment(success_condition, expected_value):
     try:
-        # Send POST request to add a comment
+        # Send POST request
         response_post = requests.post(url, headers=headers, data=payload)
 
          # Check if the success condition is based on status code
@@ -29,7 +29,7 @@ def add_comment(success_condition, expected_value):
 
 if __name__ == "__main__":
     if len(sys.argv) != 7:
-        print("Usage: py comment_tool.py <URL> <num_runs> <headers_file> <payload_file> <success_condition> <expected_value>")
+        print("Usage: py request.py <URL> <num_runs> <headers_file> <payload_file> <success_condition> <expected_value>")
         sys.exit(1)
 
     url = sys.argv[1] # URL of the endpoint to add comments
