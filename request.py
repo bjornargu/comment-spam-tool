@@ -1,7 +1,7 @@
 import requests
 import sys
 
-def add_comment(success_condition, expected_value):
+def send_request(success_condition, expected_value):
     try:
         # Send POST request
         response_post = requests.post(url, headers=headers, data=payload)
@@ -9,16 +9,16 @@ def add_comment(success_condition, expected_value):
          # Check if the success condition is based on status code
         if success_condition == 'status-code':
             if response_post.status_code == int(expected_value):
-                print("Comment added successfully.")
+                print("Request sent successfully.")
             else:
-                print(f"Failed to add comment. Expected status code: {expected_value}, Actual status code:", response_post.status_code)
+                print(f"Failed to send the request. Expected status code: {expected_value}, Actual status code:", response_post.status_code)
 
         # Check if the success condition is based on response body
         elif success_condition == 'response-body':
             if expected_value in response_post.text:
-                print("Comment added successfully.")
+                print("Request sent successfully.")
             else:
-                print("Failed to add comment. Expected content not found in response body.")
+                print("Failed to send request. Expected content not found in response body.")
 
         else:
             print("Invalid success condition provided.")
@@ -32,7 +32,7 @@ if __name__ == "__main__":
         print("Usage: py request.py <URL> <num_runs> <headers_file> <payload_file> <success_condition> <expected_value>")
         sys.exit(1)
 
-    url = sys.argv[1] # URL of the endpoint to add comments
+    url = sys.argv[1] # URL of the endpoint to sent requests to
     num_runs = int(sys.argv[2]) # Number of times to run the script
     headers_file = sys.argv[3] # Path to the file containing the header file (key/value pairs)
     payload_file = sys.argv[4] # Path to the file containing the payload information (form data)
@@ -64,5 +64,5 @@ if __name__ == "__main__":
     # Loop to run the script multiple times
     for i in range(num_runs):
         print(f"Running iteration {i+1}/{num_runs}")
-        add_comment(success_condition, expected_value)
+        send_request(success_condition, expected_value)
 
